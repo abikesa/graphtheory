@@ -20,7 +20,7 @@
 - Incentives
 
 
-# 
+ 
 
 
 Sure, here’s an interpretation of “nodes, edges, vastness” in a graph theory context:
