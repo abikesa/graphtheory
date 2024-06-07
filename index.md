@@ -1,3 +1,28 @@
+
+            1. Individual/Passion/Challenges
+                                           \
+                           2. Knowledge -> 4. Communication -> 5. Team/Network/Leadership/Decisions/Feedback/Professionalism -> 6. Accomplishments/Exceptional
+                                           /
+                                           3. Technical/Skills/Abilities
+
+                                           
+
+### Receive (Households) Nodes
+- Challenges
+- Knowledge
+
+### Express (Grid) Edges
+- Power
+- Routing
+
+### Achieve (California) Vastness
+- Suppy & Demand
+- Incentives
+
+
+# 
+
+
 Sure, here’s an interpretation of “nodes, edges, vastness” in a graph theory context:
 
 1. **Nodes (or vertices)**:
