@@ -11,7 +11,7 @@
 - Challenges
 - Knowledge
 
-### Express (Grid) Edges
+### Express (Grid) [Edges](https://abikesa.github.io/sociology/)
 - Power
 - Routing
 
