@@ -398,6 +398,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ii-mu-single-note"><code class="docutils literal notranslate"><span class="pre">ii</span></code> <span class="math notranslate nohighlight">\(\mu\)</span> Single Note</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v7-sigma-chord-stacks"><code class="docutils literal notranslate"><span class="pre">V7</span></code> <span class="math notranslate nohighlight">\(\sigma\)</span> Chord Stacks</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-predict-nextoken"><code class="docutils literal notranslate"><span class="pre">i</span></code> <span class="math notranslate nohighlight">\(\%\)</span> Predict NexToken</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-12-tribes-of-israel"><strong>The 12 Tribes of Israel</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#division-and-conquest"><strong>Division and Conquest</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-exilic-period-and-reinterpretation-of-identity"><strong>Post-Exilic Period and Reinterpretation of Identity</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cultural-and-religious-significance"><strong>Cultural and Religious Significance</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modern-interpretations-and-claims"><strong>Modern Interpretations and Claims</strong></a></li>
 </ul>
 </li>
 </ul>
@@ -1206,7 +1211,130 @@ document.write(`
 <p>Understanding nodes, edges, and vastness is crucial for analyzing and interpreting the structure and dynamics of complex networks across various domains.</p>
 </Details>
 </aside>
+<div class="cell tag_hide-input tag_hide-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input above-output-prompt docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">add_family_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">depth</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">depth</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">names</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">parent</span>
+    
+    <span class="c1"># Adding children based on depth and given names</span>
+    <span class="n">children</span> <span class="o">=</span> <span class="n">names</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">child</span><span class="p">)</span>
+        
+        <span class="c1"># Recursive call to add descendants of the current child</span>
+        <span class="n">add_family_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="n">depth</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">scale</span> <span class="o">*</span> <span class="mf">0.7</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">create_family_fractal_tree</span><span class="p">():</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+    
+    <span class="c1"># Start with the initial node &#39;God&#39;</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="s2">&quot;God&quot;</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+    
+    <span class="c1"># Add &#39;Adam&#39; as a child of &#39;God&#39;</span>
+    <span class="n">adam</span> <span class="o">=</span> <span class="s2">&quot;Adam&quot;</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">adam</span><span class="p">)</span>
+    
+    <span class="c1"># Define a list of tuples with children nodes for each patriarch</span>
+    <span class="c1"># The list format follows the depth level, each inner list represents children at that level</span>
+    <span class="n">descendants</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s2">&quot;Noah&quot;</span><span class="p">,</span> <span class="s2">&quot;Shem&quot;</span><span class="p">],</span>             <span class="c1"># Children of Adam</span>
+        <span class="p">[</span><span class="s2">&quot;Abraham&quot;</span><span class="p">],</span>                  <span class="c1"># Children of Noah or Shem</span>
+        <span class="p">[</span><span class="s2">&quot;Isaac&quot;</span><span class="p">,</span> <span class="s2">&quot;Jacob&quot;</span><span class="p">],</span>           <span class="c1"># Children of Abraham</span>
+        <span class="p">[</span><span class="s2">&quot;Judah&quot;</span><span class="p">,</span> <span class="s2">&quot;Joseph&quot;</span><span class="p">]</span>           <span class="c1"># Example: Children of Jacob, can continue as needed</span>
+        <span class="c1"># Further children can be added here to scale the fractal deeper</span>
+    <span class="p">]</span>
+    
+    <span class="c1"># Generate edges recursively</span>
+    <span class="n">add_family_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">adam</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">descendants</span><span class="p">),</span> <span class="n">descendants</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">G</span>
+
+<span class="c1"># Generate the fractal family tree</span>
+<span class="n">family_tree_graph</span> <span class="o">=</span> <span class="n">create_family_fractal_tree</span><span class="p">()</span>
+
+<span class="c1"># Visualization</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">family_tree_graph</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">family_tree_graph</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s2">&quot;skyblue&quot;</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">font_weight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Save the image or display it</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
+<div class="cell_output docutils container">
+<img alt="../_images/ff40457fc19aefcee899d3c1877969df2529f1c9977e6bfc2d8d72740f5021d7.png" src="../_images/ff40457fc19aefcee899d3c1877969df2529f1c9977e6bfc2d8d72740f5021d7.png" />
+</div>
+</details>
+</div>
+<Details>
+   <Summary></Summary>
+<p>The fate of the 12 tribes of Israel is a complex and layered story that intertwines history, mythology, and religious tradition. Let’s explore what happened to these tribes:</p>
 </section>
+<section id="the-12-tribes-of-israel">
+<h3><strong>The 12 Tribes of Israel</strong><a class="headerlink" href="#the-12-tribes-of-israel" title="Permalink to this heading">#</a></h3>
+<p>Jacob’s 12 sons—Reuben, Simeon, Levi, Judah, Dan, Naphtali, Gad, Asher, Issachar, Zebulun, Joseph, and Benjamin—each became the patriarch of a tribe. These tribes formed the foundation of ancient Israelite society.</p>
+</section>
+<section id="division-and-conquest">
+<h3><strong>Division and Conquest</strong><a class="headerlink" href="#division-and-conquest" title="Permalink to this heading">#</a></h3>
+<ol class="arabic">
+<li><p><strong>Division of the Kingdom</strong>: After King Solomon’s death around 931 BCE, the united Kingdom of Israel split into two separate entities:</p>
+<ul class="simple">
+<li><p><strong>Northern Kingdom (Israel)</strong>: Consisted of 10 tribes: Reuben, Simeon, Levi, Dan, Naphtali, Gad, Asher, Issachar, Zebulun, and Ephraim and Manasseh (Joseph’s sons, who were each considered a separate half-tribe).</p></li>
+<li><p><strong>Southern Kingdom (Judah)</strong>: Composed primarily of the tribes of Judah and Benjamin.</p></li>
+</ul>
+</li>
+<li><p><strong>Assyrian Conquest and the Lost Tribes</strong>: In 722 BCE, the Assyrian Empire conquered the Northern Kingdom of Israel. The Assyrians implemented a policy of forced relocation, deporting many Israelites to different parts of their empire. This led to the dispersal and, effectively, the disappearance of the 10 tribes of the Northern Kingdom from historical records. These tribes are often referred to as the “Lost Tribes of Israel.”</p>
+<p>Over time, these dispersed populations assimilated into the surrounding cultures, losing their distinct Israelite identity. This has led to numerous legends and theories about their fate, including claims that they ended up in distant lands like Afghanistan, India, and even Japan or the Americas.</p>
+</li>
+<li><p><strong>Survival of the Southern Kingdom</strong>: The Southern Kingdom of Judah, with the tribes of Judah and Benjamin, survived longer than its northern counterpart. In 586 BCE, however, it too was conquered, this time by the Babylonians, who destroyed the First Temple in Jerusalem and exiled many Jews to Babylon. Unlike the Northern Kingdom, the Jews in Babylon maintained their cultural and religious identity, and many eventually returned to Jerusalem after the Persians conquered Babylon. This is known as the Babylonian Exile.</p></li>
+</ol>
+</section>
+<section id="post-exilic-period-and-reinterpretation-of-identity">
+<h3><strong>Post-Exilic Period and Reinterpretation of Identity</strong><a class="headerlink" href="#post-exilic-period-and-reinterpretation-of-identity" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Return and Rebuilding</strong>: After the Babylonian Exile, the returning Jews (largely from the tribes of Judah, Benjamin, and Levi, with a few others mixed in) rebuilt Jerusalem and the Second Temple. Thus, the Jewish identity became closely associated with the tribe of Judah, leading to the term “Jew” being used to describe all Israelites.</p></li>
+<li><p><strong>Diaspora and Survival</strong>: As Jewish communities spread throughout the world (the Jewish Diaspora), the tribal distinctions became less relevant. The focus shifted more towards preserving religious and cultural traditions rather than tribal identities.</p></li>
+</ul>
+</section>
+<section id="cultural-and-religious-significance">
+<h3><strong>Cultural and Religious Significance</strong><a class="headerlink" href="#cultural-and-religious-significance" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Levi and the Kohanim</strong>: The tribe of Levi (especially the descendants of Aaron, known as Kohanim or priests) retained a distinct identity due to their specific religious roles and duties. The Levites and Kohanim continue to have a recognized status within Jewish communities today.</p></li>
+<li><p><strong>Symbolic Role in Jewish Eschatology</strong>: In Jewish eschatological beliefs, particularly in some interpretations of Messianic expectations, the 12 tribes are expected to be reunited. This idea persists in some religious circles, suggesting that the descendants of the Lost Tribes will one day return to Israel.</p></li>
+</ul>
+</section>
+<section id="modern-interpretations-and-claims">
+<h3><strong>Modern Interpretations and Claims</strong><a class="headerlink" href="#modern-interpretations-and-claims" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Groups Claiming Descent</strong>: Over the centuries, various groups worldwide have claimed descent from the Lost Tribes. For example:</p>
+<ul>
+<li><p>The <strong>Beta Israel</strong> of Ethiopia claims descent from the Tribe of Dan.</p></li>
+<li><p>The <strong>Bene Israel</strong> of India and the <strong>Bnei Menashe</strong> in northeast India claim descent from the tribes of Ephraim and Manasseh.</p></li>
+<li><p>Some Pashtun tribes in Afghanistan and Pakistan have traditions linking themselves to the Lost Tribes.</p></li>
+</ul>
+</li>
+<li><p><strong>Scholarly and Religious Views</strong>: Many scholars view the stories of the Lost Tribes as a combination of historical events, myth, and theological reflection. Some religious groups, however, continue to actively seek and identify potential descendants of the Lost Tribes, believing in their eventual return as part of a divine plan.</p></li>
+</ul>
+<p>In essence, while the concept of the 12 tribes remains a foundational element in Jewish history and identity, the practical reality is that most of these tribes were lost to history through conquest, assimilation, and the complexities of ancient geopolitics. The few that remained—Judah, Benjamin, and Levi—became the core of Jewish identity and continuity.</p>
+</Details></section>
 </section>
 </section>
 
@@ -1260,6 +1388,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ii-mu-single-note"><code class="docutils literal notranslate"><span class="pre">ii</span></code> <span class="math notranslate nohighlight">\(\mu\)</span> Single Note</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#v7-sigma-chord-stacks"><code class="docutils literal notranslate"><span class="pre">V7</span></code> <span class="math notranslate nohighlight">\(\sigma\)</span> Chord Stacks</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#i-predict-nextoken"><code class="docutils literal notranslate"><span class="pre">i</span></code> <span class="math notranslate nohighlight">\(\%\)</span> Predict NexToken</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-12-tribes-of-israel"><strong>The 12 Tribes of Israel</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#division-and-conquest"><strong>Division and Conquest</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#post-exilic-period-and-reinterpretation-of-identity"><strong>Post-Exilic Period and Reinterpretation of Identity</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cultural-and-religious-significance"><strong>Cultural and Religious Significance</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modern-interpretations-and-claims"><strong>Modern Interpretations and Claims</strong></a></li>
 </ul>
 </li>
 </ul>
